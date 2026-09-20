@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loïc MOUMY - Data Analyst & Data Engineer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#ff5c35', // Primary orange from screenshots
+                            dark: '#0f172a',   // Dark navy/black for sections
+                            light: '#f8fafc',  // Light background
+                            card: '#ffffff'
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for subtle details not easily handled by Tailwind utilities alone */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+        .hero-glow {
+            background: radial-gradient(circle, rgba(255,92,53,0.15) 0%, rgba(255,255,255,0) 70%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased selection:bg-brand-orange selection:text-white">
+
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="border border-dashed border-blue-400 p-1 flex items-center gap-2 rounded-sm cursor-pointer hover:bg-blue-50 transition-colors">
+                        <div class="w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xs">
+                            LM
+                        </div>
+                        <span class="font-bold text-lg tracking-tight text-brand-dark">LM.DATA</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-2 lg:space-x-6 items-center">
+                    <a href="#accueil" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Accueil</a>
+                    <a href="#competences" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Compétences</a>
+                    <a href="#experiences" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Expériences</a>
+                    <a href="#projets" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Projets</a>
+                    <a href="#formation" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Formation</a>
+                    <a href="#recommandations" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Recommandations</a>
+                    <a href="#contact" class="nav-link px-3 py-1.5 rounded-lg border border-transparent text-gray-500 hover:text-brand-dark font-medium text-sm transition-all duration-300">Contact</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://www.linkedin.com/in/loic-moumy-data/" target="_blank" rel="noopener noreferrer" class="bg-[#0A66C2] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#084e96] transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-brand-dark focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="accueil" class="relative pt-32 pb-20 overflow-hidden bg-grid bg-grid-pattern">
+            <!-- Subtle background glow -->
+            <div class="absolute inset-0 hero-glow z-0"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-sm mb-6">
+                    <span class="text-lg">👋</span>
+                    <span class="text-sm font-medium text-gray-700">Bienvenue sur mon profil professionnel</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-dark mb-4 tracking-tight">
+                    Loïc MOUMY
+                </h1>
+                
+                <!-- Subtitle -->
+                <h2 class="text-3xl md:text-5xl font-bold text-brand-orange mb-6">
+                    Data Analyst & Data Engineer
+                </h2>
+
+                <!-- Description Text -->
+                <div class="max-w-2xl mx-auto space-y-2 mb-12">
+                    <p class="text-gray-600 mt-4 leading-relaxed text-lg">
+                        Actuellement Data Analyst & Data Engineer en alternance au pôle Data / IA du 
+                        Groupe La Poste, je combine une solide expertise technique (Power BI, SQL, 
+                        Python) et une vision métier stratégique. Je suis à l'écoute de nouvelles opportunités.
+                    </p>
+                </div>
+
+                <div class="relative max-w-[320px] mx-auto mt-16">
+                    <!-- Left Floating Card (Hidden on very small screens) -->
+                    <div class="hidden lg:block absolute -left-[320px] top-1/4 bg-white rounded-xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 w-[260px] text-left z-20">
+                        <div class="flex items-center gap-2 mb-1">
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-bold text-green-600 uppercase tracking-wider">En alternance à La Poste</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-brand-dark mb-1 uppercase">Étudiant ingénieur Big Data à l'ESIGELEC</h4>
+                        <div class="text-[11px] text-gray-500 leading-tight mt-1.5 space-y-0.5">
+                            <p>Prêt à relever de nouveaux défis</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Floating Card -->
+                    <div class="hidden lg:block absolute -right-[320px] top-1/3 bg-white rounded-xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 w-[280px] text-left z-20">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Compétences clés</p>
+                        <div class="space-y-2">
+                            <div class="bg-brand-dark text-white text-xs font-semibold px-3 py-2 rounded-lg">
+                                Power BI (DAX, Power Query) & Excel avancé
+                            </div>
+                            <div class="bg-brand-orange text-white text-xs font-semibold px-3 py-2 rounded-lg w-fit">
+                                SQL, Python, Cloud Azure Databricks
+                            </div>
+                            <div class="text-xs text-gray-500 font-medium px-1">
+                                DATAIKU, Dremio, DAX Studio, Docker
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Image container (Arch shape) -->
+                    <div class="relative z-10 w-[320px] h-[400px] mx-auto rounded-t-[160px] border-[6px] border-brand-orange bg-gray-100 overflow-hidden shadow-xl">
+                        <img src="photo-loic.jpeg" alt="Loïc MOUMY" class="w-full h-full object-cover object-top" onerror="this.src='https://placehold.co/400x500/1e293b/ffffff?text=Photo'">
+                    </div>
+                    
+                    <!-- Inner overlapping mini badges on image -->
+                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-white/95 backdrop-blur shadow-lg rounded-full px-1.5 py-1.5 z-30 w-max border border-gray-100">
+                        <a href="#experiences" class="text-xs font-bold text-brand-dark px-3 py-1 cursor-pointer hover:text-brand-orange transition-colors block">Expériences ↗</a>
+                        <a href="#projets" class="text-xs font-bold text-white bg-brand-dark rounded-full px-4 py-1.5 cursor-pointer hover:bg-gray-800 transition-colors block">Projets</a>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#projets" class="bg-brand-orange hover:bg-[#e6522c] text-white px-8 py-3.5 rounded-full font-bold shadow-lg shadow-orange-500/30 transition-all transform hover:-translate-y-0.5 w-full sm:w-auto text-center">
+                        Découvrir mes réalisations ↗
+                    </a>
+                    <a href="CV MOUMY Loïc.pdf" download="CV_Loic_Moumy.pdf" class="bg-white hover:bg-gray-50 text-brand-dark border border-gray-200 px-8 py-3.5 rounded-full font-bold shadow-sm transition-all w-full sm:w-auto text-center">
+                        Télécharger mon CV (.pdf)
+                    </a>
+                </div>
+
+                <div class="mt-24 pt-12 border-t border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-black text-brand-dark mb-1">+200M</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">Lignes de données traitées<br><span class="lowercase text-gray-400">Écosystème Big Data</span></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-black text-brand-orange mb-1">+5</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">Tableaux de bord déployés<br><span class="lowercase text-gray-400">Power BI & Excel</span></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-black text-brand-dark mb-1 leading-tight">Agile Scrum</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">Méthodologie de travail<br><span class="lowercase text-gray-400">Sprints & rituels agiles</span></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-black text-brand-orange mb-1">+3</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">Expérices professionnelles<br><span class="lowercase text-gray-400">en data</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="py-24 bg-brand-dark text-white relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 font-sans tracking-tight">Compétences techniques</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Un aperçu global de mes expertises techniques en Business Intelligence, ingénierie de la donnée, science des données et gestion de projets.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 hover:border-slate-500 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900/50 flex items-center justify-center border border-slate-700 mb-6 text-brand-orange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">Datavisualisation & BI</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Power BI</strong> (Power Query, DAX, Éditeur avancé)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Excel avancé</strong> (TCD)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 hover:border-slate-500 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900/50 flex items-center justify-center border border-slate-700 mb-6 text-brand-orange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">Programmation</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Python</strong> (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">SQL</strong> (Oracle, MySQL), PL/SQL</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">HTML, CSS, PHP, C</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 hover:border-slate-500 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900/50 flex items-center justify-center border border-slate-700 mb-6 text-brand-orange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">Data Engineering</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Écosystème Hadoop</strong> (HDFS, Spark, Hive)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Azure Databricks</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">DATAIKU</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Dremio</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 hover:border-slate-500 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900/50 flex items-center justify-center border border-slate-700 mb-6 text-brand-orange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">Data Science et IA</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Machine Learning :</strong> Modèles supervisés et non supervisés, régression et classification avec Python</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Prompt engineering</strong> avec l'IA Générative</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 hover:border-slate-500 transition-colors md:col-span-2 lg:col-span-1">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900/50 flex items-center justify-center border border-slate-700 mb-6 text-brand-orange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">Gestion de projet</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Agile Scrum</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Git / GitHub / GitLab</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-orange mt-2 flex-shrink-0"></div>
+                                <span class="text-gray-300"><strong class="text-white">Jira</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiences" class="py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-brand-orange font-bold tracking-widest text-sm uppercase mb-3">Parcours Professionnel</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-dark tracking-tight">Expériences Significatives</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">Des missions à fort impact métier menées au cœur d'équipes data et télécoms.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Current Experience (La Poste) -->
+                    <div class="bg-white rounded-[2rem] p-8 shadow-sm border-2 border-brand-orange/20 relative flex flex-col h-full hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-green-600 bg-green-50 px-3 py-1.5 rounded-full uppercase tracking-wide">Actuel / En cours</span>
+                            <span class="text-sm font-semibold text-gray-400">2026 – 2027</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Data Analyst & Data Engineer (Alternance)</h3>
+                        <p class="text-brand-orange font-medium mb-6">Le Groupe La Poste <span class="text-gray-400 font-normal">• Nantes, France</span></p>
+                        
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-sm font-semibold text-brand-dark mb-1"><span class="text-brand-orange">Thème :</span> Migration BI et migration vers le Cloud Azure Databricks</p>
+                            <p class="text-sm text-gray-600 mt-2 leading-relaxed"><span class="font-semibold text-gray-800">Objectif :</span> Poursuivre la migration des tableaux de bord initiée durant le stage et participer à la migration des données présentes dans le Datalake Cloudera vers le Cloud Azure Databricks.</p>
+                        </div>
+
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Missions</h4>
+                            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Conception de modèles de données et création de tableaux de bord (Power BI, Excel) pour différentes entités.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Préparation de données via Dataiku au sein d'un écosystème Big Data.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Ingestion des données via Databricks.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-100 text-sm">
+                            <span class="font-semibold text-gray-700">Stack :</span> <span class="text-gray-500">Azure Databricks, Power BI, Excel avancé, Dataiku, Jira</span>
+                        </div>
+                    </div>
+
+                    <!-- Internship Experience (La Poste) -->
+                    <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 relative flex flex-col h-full hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full uppercase tracking-wide">Stage</span>
+                            <span class="text-sm font-semibold text-gray-400">Avril 2026 – Sept. 2026</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Data Analyst (Stage)</h3>
+                        <p class="text-brand-orange font-medium mb-6">Le Groupe La Poste <span class="text-gray-400 font-normal">• Nantes, France</span></p>
+                        
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-sm font-semibold text-brand-dark mb-1"><span class="text-brand-orange">Thème :</span> Migration BI de Cognos à Power BI</p>
+                            <p class="text-sm text-gray-600 mt-2 leading-relaxed"><span class="font-semibold text-gray-800">Objectif :</span> Réaliser la migration du système décisionnel utilisé par les différentes entités du Groupe La Poste. Migration des rapports sous SAP BW et IBM Cognos vers Power BI.</p>
+                        </div>
+
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Missions & Défis</h4>
+                            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Conception de modèles de données et tableaux de bord (Power BI, Excel).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Préparation de données via Dataiku en environnement Big Data (Cloudera, Dremio, Spark Scala).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Travail en équipe suivant la méthodologie Agile Scrum.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Défis rencontrés : lenteur des rapports sous Excel (MDX à DAX), gestion de volumes (plus de 200M lignes) & calendrier annuel à 16 périodes.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="pt-4 mt-auto">
+                            <div class="text-sm mb-3">
+                                <span class="font-semibold text-gray-700">Stack :</span> <span class="text-gray-500">Power BI, Excel avancé, Dataiku, Dremio, Jira</span>
+                            </div>
+                            <div class="bg-green-50 text-green-700 text-sm font-semibold px-4 py-2.5 rounded-xl">
+                                Résultat : 5 dashboards déployés pour 15+ collaborateurs
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Internship Experience (Orange) -->
+                    <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 relative flex flex-col h-full hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full uppercase tracking-wide">Stage</span>
+                            <span class="text-sm font-semibold text-gray-400">Juin 2024 – Août 2024</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Assistant Data Analyst (Stage)</h3>
+                        <p class="text-brand-orange font-medium mb-6">Orange <span class="text-gray-400 font-normal">• Yaoundé, Cameroun</span></p>
+                        
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-sm font-semibold text-brand-dark mb-1"><span class="text-brand-orange">Thème :</span> Valorisation des données & automatisation marketing</p>
+                            <p class="text-sm text-gray-600 mt-2 leading-relaxed"><span class="font-semibold text-gray-800">Objectif :</span> Automatiser la collecte et le traitement des données marketing (pipeline ETL) pour concevoir un dashboard Power BI d'analyse des canaux d'adhésion.</p>
+                        </div>
+
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Missions</h4>
+                            <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Automatisation de l'extraction et transformation via Power Automate et Python.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Développement d'un script Python d'ingestion continue vers SQL Server.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brand-orange mt-0.5">▸</span>
+                                    <span>Conception d'un tableau de bord Power BI pour valoriser les données auprès des utilisateurs.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="pt-4 mt-auto">
+                            <div class="text-sm mb-3">
+                                <span class="font-semibold text-gray-700">Stack :</span> <span class="text-gray-500">Power Automate, Power BI, Python, SQL Server</span>
+                            </div>
+                            <div class="bg-green-50 text-green-700 text-sm font-semibold px-4 py-2.5 rounded-xl">
+                                Résultat : -40% de temps de traitement grâce au pipeline
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets" class="py-24 bg-white border-t border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-brand-orange font-bold tracking-widest text-sm uppercase mb-3">Portfolio Sélectionné</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-dark tracking-tight">Projets & Études de Cas</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">Des cas concrets de modélisation, visualisation et apprentissage machine appliqués aux problématiques bancaires et financières.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Project 1 -->
+                    <a href="https://github.com/loic-moumy/BI_Dashboard_suivi_credit_immobilier" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col cursor-pointer">
+                        <!-- Image placeholder mimicking the dashboard screenshot -->
+                        <div class="h-64 bg-[#f4ebd8] relative overflow-hidden flex items-center justify-center p-6">
+                            <div class="absolute top-4 right-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-gray-700">Power BI • Finance</div>
+                            <img src="https://placehold.co/800x500/1e293b/ffffff?text=Financial+Dashboard+Mockup" alt="Dashboard" class="w-full h-full object-cover rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 text-xs font-bold text-brand-orange uppercase tracking-wider mb-3">
+                                <span>Data Visualisation</span> <span class="w-1 h-1 rounded-full bg-brand-orange"></span> <span>Business Intelligence</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4">Suivi analytique des prêts bancaires d'une banque</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Conception d'un tableau de bord de pilotage sous Power BI : analyse de la distribution des crédits, taux de défaillance, segmentation des emprunteurs et calcul d'indicateurs de risque via des mesures DAX optimisées.</p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-sm font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">KPIs interactifs & Modélisation en étoile</span>
+                                <span class="text-sm font-bold text-brand-dark group-hover:text-brand-orange transition-colors">Consulter les détails →</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 2 -->
+                    <a href="https://github.com/loic-moumy/Machine_learning_loan_prediction" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col cursor-pointer">
+                        <div class="h-64 bg-[#f0f9ff] relative overflow-hidden flex items-center justify-center p-6">
+                             <div class="absolute top-4 right-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-gray-700">Python • Scikit-Learn</div>
+                            <img src="https://placehold.co/800x500/0f172a/ffffff?text=Machine+Learning+Process" alt="ML Process" class="w-full h-full object-cover rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 text-xs font-bold text-brand-orange uppercase tracking-wider mb-3">
+                                <span>Machine Learning</span> <span class="w-1 h-1 rounded-full bg-brand-orange"></span> <span>Data Science</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4">Prédiction du remboursement de prêts bancaires</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Modélisation prédictive sous Python : analyse exploratoire approfondie (EDA), feature engineering, nettoyage des données, entraînement et évaluation de modèles de classification pour évaluer le scoring client.</p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-sm font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">Scikit-Learn • Pandas • Matplotlib</span>
+                                <span class="text-sm font-bold text-brand-dark group-hover:text-brand-orange transition-colors">Consulter les détails →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="formation" class="py-24 bg-gray-50 border-t border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-brand-orange font-bold tracking-widest text-sm uppercase mb-3">Formation & Diplômes</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-dark tracking-tight">Formation d'Excellence & Certifications</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Academic Column -->
+                    <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100">
+                        <div class="inline-block bg-orange-50 text-brand-orange text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-8">
+                            🎓 Parcours académique
+                        </div>
+
+                        <div class="relative border-l-2 border-gray-100 pl-6 space-y-10">
+                            <!-- Degree 1 -->
+                            <div class="relative">
+                                <div class="absolute -left-[31px] top-1 w-4 h-4 bg-white border-4 border-brand-orange rounded-full"></div>
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                                    <h4 class="text-lg font-bold text-brand-dark">Cycle Ingénieur Généraliste — Big Data</h4>
+                                    <span class="text-sm font-semibold text-gray-500 mt-1 sm:mt-0">2024 – 2027</span>
+                                </div>
+                                <p class="text-brand-orange text-sm font-semibold mb-3">ESIGELEC — Rouen, France</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">Cycle ingénieur généraliste avec la spécialité Big Data pour la Transformation Numérique (BTDN). Ma formation me permettra d’analyser et traiter des données, gérer un projet de data science, et d’avoir les compétences en data engineering, data visualisation, business inteligence et en machine learning.</p>
+                            </div>
+
+                            <!-- Degree 2 -->
+                            <div class="relative">
+                                <div class="absolute -left-[31px] top-1 w-4 h-4 bg-white border-4 border-gray-300 rounded-full"></div>
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                                    <h4 class="text-lg font-bold text-brand-dark">Classe Préparatoire Intégrée</h4>
+                                    <span class="text-sm font-semibold text-gray-500 mt-1 sm:mt-0">2022 – 2024</span>
+                                </div>
+                                <p class="text-brand-orange text-sm font-semibold mb-3">PREPAVOGT — Yaoundé, Cameroun</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">Mathématiques approfondies, Physique, Sciences de l'ingénieur.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 pt-6 border-t border-gray-100">
+                            <p class="text-sm text-gray-600"><span class="font-semibold text-gray-800">Engagement associatif :</span> Ambassadeur de l'ESIGELEC & Bénévolat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Certifications Column -->
+                    <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 flex flex-col">
+                        <div class="inline-block bg-orange-50 text-brand-orange text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-8 w-max">
+                            📜 Certifications & Langues
+                        </div>
+
+                        <div class="space-y-4 flex-grow">
+                            <!-- Cert 1 -->
+                            <div class="border border-gray-100 rounded-2xl p-5 flex items-start gap-4 hover:border-brand-orange/30 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-brand-orange flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-brand-dark">Réalisez des dashboards avec Power BI</h4>
+                                    <p class="text-xs text-gray-500 mb-2">OpenClassrooms • Certification validée</p>
+                                    <p class="text-xs text-gray-600">Maîtrise de Power Query, modélisation relationnelle et formules DAX complexes.</p>
+                                </div>
+                            </div>
+
+                            <!-- Cert 2 -->
+                            <div class="border border-gray-100 rounded-2xl p-5 flex items-start gap-4 hover:border-brand-orange/30 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-brand-dark">Python pour la Data</h4>
+                                    <p class="text-xs text-gray-500 mb-2">Udemy • Certification validée</p>
+                                    <p class="text-xs text-gray-600">Manipulation et visualisation de données avec NumPy, Pandas, Matplotlib & Seaborn.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm font-semibold text-brand-dark">Français : <span class="font-normal text-gray-600">Langue maternelle</span></p>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-brand-dark">Anglais : <span class="font-normal text-gray-600">Niveau B1</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommandations" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-brand-orange font-bold tracking-widest text-sm uppercase mb-3">Recommandations</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-dark tracking-tight">Ils ont collaboré avec moi</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">Témoignages et retours d'expérience sur mes réalisations en Business Intelligence, ingénierie de données et conduite du changement.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rec 1 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 text-brand-orange">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-brand-orange bg-orange-50 px-2 py-1 rounded uppercase">Business Intelligence</span>
+                        </div>
+                        <p class="text-gray-600 italic mb-8 flex-grow">« Loïc a fait preuve d'une autonomie et d'une maîtrise technique remarquable sur la migration et l'optimisation DAX. Il a su vulgariser et accompagner nos équipes métiers vers une adoption totale. »</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center font-bold text-sm">MB</div>
+                            <div>
+                                <p class="font-bold text-brand-dark text-sm">Tuteur & Manager BI</p>
+                                <p class="text-xs text-gray-500">Le Groupe La Poste</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rec 2 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 text-brand-orange">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase">Pilotage & Clôtures</span>
+                        </div>
+                        <p class="text-gray-600 italic mb-8 flex-grow">« Grâce aux modèles Power BI et au rafraîchissement incrémentiel mis en place par Loïc, nos clôtures et analyses se font en temps record avec une fiabilité absolue. »</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">CG</div>
+                            <div>
+                                <p class="font-bold text-brand-dark text-sm">Contrôleur de Gestion Senior</p>
+                                <p class="text-xs text-gray-500">Le Groupe La Poste</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rec 3 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 text-brand-orange">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-pink-600 bg-pink-50 px-2 py-1 rounded uppercase">Automatisation & Pipelines</span>
+                        </div>
+                        <p class="text-gray-600 italic mb-8 flex-grow">« Sa rigueur sur l'automatisation Python et les pipelines SQL Server a permis un gain de temps de 40% pour nos équipes. Un profil talentueux et très investi. »</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">RD</div>
+                            <div>
+                                <p class="font-bold text-brand-dark text-sm">Responsable Data & Automatisation</p>
+                                <p class="text-xs text-gray-500">Orange</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rec 4 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 text-brand-orange">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded uppercase">Excellence Académique</span>
+                        </div>
+                        <p class="text-gray-600 italic mb-8 flex-grow">« Un élève ingénieur passionné, combinant parfaitement l'ingénierie Big Data, l'architecture Cloud et le sens de l'analyse métier. »</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">ES</div>
+                            <div>
+                                <p class="font-bold text-brand-dark text-sm">Responsable Pédagogique Majeure BTDN</p>
+                                <p class="text-xs text-gray-500">ESIGELEC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 bg-[#0b0f19] relative font-sans">
+            <!-- Subtle background effect -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/5 rounded-full blur-[120px]"></div>
+            </div>
+            
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+                        Prenons <span class="text-brand-orange">contact</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+                        Un projet, une question, une opportunité ? Parlons-en.
+                    </p>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    
+                    <!-- Left Column: Direct Contact -->
+                    <div class="bg-[#131b2c] rounded-2xl border border-gray-800 p-8 flex flex-col shadow-2xl">
+                        <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-3 block">Contact Direct</span>
+                        <h3 class="text-2xl font-bold text-white mb-3">Discutons de vos besoins</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">
+                            N'hésitez pas à me joindre directement par e-mail ou via les réseaux professionnels.
+                        </p>
+
+                        <!-- Email Nested Card -->
+                        <div class="bg-[#0f1523] rounded-xl border border-gray-800/60 p-6 mb-8">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2 block">Adresse E-mail</p>
+                            <p class="text-white font-semibold text-lg mb-6 break-all">loic.moumy.data@gmail.com</p>
+                            
+                            <div class="flex flex-col sm:flex-row items-center gap-3">
+                                <button id="copy-email-btn" onclick="copyEmail()" class="w-full sm:flex-1 bg-gray-800/40 hover:bg-gray-700/80 text-gray-300 text-sm font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors border border-gray-700/50">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                    <span id="copyBtnText">Copier</span>
+                                </button>
+                                <a href="mailto:loic.moumy.data@gmail.com" class="w-full sm:flex-1 bg-[#251e1c] hover:bg-[#3d2c25] text-brand-orange text-sm font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors border border-brand-orange/10">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    Écrire
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="mt-auto">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-4 block">Réseaux & Profils</p>
+                            <div class="flex items-center gap-3">
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/in/loic-moumy-data/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#0A66C2] hover:bg-gray-50 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                                <!-- GitHub -->
+                                <a href="https://github.com/loic-moumy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black hover:bg-gray-50 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Form -->
+                    <div class="bg-[#131b2c] rounded-2xl border border-gray-800 p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-2">Envoyez-moi un message</h3>
+                        <p class="text-gray-400 text-sm mb-8">Remplissez ce formulaire et je reviendrai vers vous rapidement.</p>
+
+                        <form action="https://formspree.io/f/mqpaepvq" method="POST" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="nom" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Nom Complet <span class="text-brand-orange">*</span></label>
+                                    <input type="text" name="nom" id="nom" placeholder="ex. Sophie Germain" required 
+                                           class="w-full bg-[#0f1523] border border-gray-700/50 text-white text-sm rounded-lg px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors placeholder-gray-600">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Adresse E-mail <span class="text-brand-orange">*</span></label>
+                                    <input type="email" name="email" id="email" placeholder="ex. sophie@entreprise.fr" required 
+                                           class="w-full bg-[#0f1523] border border-gray-700/50 text-white text-sm rounded-lg px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors placeholder-gray-600">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="sujet" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Type de Sujet / Demande <span class="text-brand-orange">*</span></label>
+                                <div class="relative">
+                                    <select name="sujet" id="sujet" required 
+                                            class="w-full bg-[#0f1523] border border-gray-700/50 text-white text-sm rounded-lg px-4 py-3.5 appearance-none focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors cursor-pointer">
+                                        <option value="" disabled selected class="text-gray-500">Sélectionnez une thématique...</option>
+                                        <option value="Opportunité professionnelle">Opportunité professionnelle</option>
+                                        <option value="Projet Data / Mission">Projet Data / Mission</option>
+                                        <option value="Échange technique / Réseautage">Échange technique / Réseautage</option>
+                                        <option value="Autre">Autre</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Votre Message Détaillé <span class="text-brand-orange">*</span></label>
+                                <textarea name="message" id="message" rows="4" placeholder="Décrivez votre besoin, le contexte technique, les délais envisagés..." required 
+                                          class="w-full bg-[#0f1523] border border-gray-700/50 text-white text-sm rounded-lg px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors resize-none placeholder-gray-600"></textarea>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-2">
+                                <div class="flex items-center gap-2 text-emerald-500/90 text-xs font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                    Données protégées et confidentielles.
+                                </div>
+                                <button type="submit" class="w-full sm:w-auto bg-brand-orange hover:bg-[#e6522c] text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2">
+                                    Envoyer le message 
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Extra badge below -->
+                <div class="mt-20 flex justify-center pb-8">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-orange to-[#DD2476] rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                        <div class="relative inline-flex items-center gap-3 bg-[#0f1523] border border-gray-700 text-white rounded-full px-8 py-4 text-sm md:text-base font-bold tracking-wide shadow-xl">
+                            <span class="text-xl">📍</span>
+                            <span>Basé à <span class="text-brand-orange">Nantes (France)</span> & Mobile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+                <div class="w-6 h-6 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-[10px]">LM</div>
+                <span><strong class="text-brand-dark">Loïc MOUMY</strong> © Tous droits réservés.</span>
+            </div>
+            
+            <div class="flex items-center gap-6 text-sm font-medium text-gray-500">
+                <a href="https://www.linkedin.com/in/loic-moumy-data/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-dark transition-colors">LinkedIn</a>
+                <a href="https://github.com/loic-moumy" target="_blank" rel="noopener noreferrer" class="hover:text-brand-dark transition-colors">GitHub</a>
+                <a href="mailto:loic.moumy.data@gmail.com" class="hover:text-brand-dark transition-colors">Email</a>
+                <a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-1">Haut de page <span class="text-lg leading-none mt-[-2px]">↑</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script Intersection Observer (existants pour la navigation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-brand-dark', 'border-blue-400', 'border-dashed', 'bg-blue-50/50', 'font-semibold');
+                            link.classList.add('text-gray-500', 'border-transparent', 'font-medium');
+                            
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.remove('text-gray-500', 'border-transparent', 'font-medium');
+                                link.classList.add('text-brand-dark', 'border-blue-400', 'border-dashed', 'bg-blue-50/50', 'font-semibold');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Script pour copier l'adresse email
+        function copyEmail() {
+            const tempInput = document.createElement("input");
+            tempInput.value = "loic.moumy.data@gmail.com";
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // Changement de texte temporaire pour retour visuel
+            const btnText = document.getElementById('copyBtnText');
+            if(btnText) {
+                const originalText = btnText.innerText;
+                btnText.innerText = "Copié !";
+                setTimeout(() => { 
+                    btnText.innerText = originalText; 
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
